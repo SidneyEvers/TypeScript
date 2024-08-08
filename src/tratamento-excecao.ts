@@ -20,7 +20,7 @@ function calcularImc(peso:number,altura:number):number {
         throw Error("Peso inválido! Peso não pode ser menor ou igual a 0")
     }
     if(peso >= 400){
-        throw Error("Peso inválido! Peso não pode ser maior ou igual a 400.00");
+        throw Error("Peso inválido! Peso não pode ser maior ou igual a 400.00")
     }
     if(altura <= 0){
         throw Error("Altura inválida! Altura não pode ser menor ou igual a 0")
