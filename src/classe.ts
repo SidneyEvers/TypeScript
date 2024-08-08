@@ -99,6 +99,7 @@ sidneyevers.skils = [
 ]
 console.log(sidneyevers)
 */
+
 class UsuarioDeMaior {
     nome: string;
     idade: number;

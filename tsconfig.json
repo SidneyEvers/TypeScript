@@ -5,10 +5,10 @@
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": false,
-      "outDir": "js"
+      "outDir": "dist"
       
     },
     "include": [
-       "ts/**/*.ts"
+       "src/**/*.ts"
     ]
   }
