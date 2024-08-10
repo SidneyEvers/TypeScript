@@ -1,26 +1,51 @@
+class AnoNascimentoAbaixoDoMinimoError extends Error{
+    constructor(mensagem:string){
+        super(mensagem);
+        this.name = "AnoNascimentoAbaixoDoMinimo";
+    }
+}
+class AnoNascimentoAcimaDoMaximoError extends Error{
+    constructor(ano_maximo: number){
+        super(`Ano Nascimento inválido! Valor deve ser abaixo de ${ano_maximo}`);
+        this.name = "AnoNascimenoAcimaDoMaximo";
+    }
+}
+
+
 function calcularIdade(anoNascimento: number): number{
     if(anoNascimento < 1900){
-        throw Error("Ano de nascimento não pode ser menor do que 1900")
+        throw new AnoNascimentoAbaixoDoMinimoError("Ano de nacimento inválido! O ano de nascimento deve ser maior que 1899")
     }
-    if(anoNascimento > 2024){
-        throw Error("Ano de nascimento não pode ser maior do que 2024")
+    const dataAtual = new Date();
+    let anoAtual = dataAtual.getFullYear();
+
+    if(anoNascimento > anoAtual){
+        throw new AnoNascimentoAcimaDoMaximoError(anoAtual + 1)
     }
-    const date = new Date();
-    let anoAtual = date.getFullYear();
+
     let idadeAtual = anoAtual - anoNascimento;
     return idadeAtual;
 
 }
 
 try{
-    
-    console.log(calcularIdade(1997))
+    let idade = calcularIdade(2024);
+    console.log(`Idade ${idade}`);
 }catch(error){
-    console.log(error.message)
+    if(error instanceof AnoNascimentoAbaixoDoMinimoError || error instanceof AnoNascimentoAcimaDoMaximoError){
+        console.log("Erro no campo de Ano de Nascimento");
+        console.error(error.message);
+        console.error(error.name);
+        //console.error(error.stack);
+    }
+    else{
+        console.log(error.message)
+    }
 }
-finally{
-    console.log("Verificação finalizada!")
-}
+
+
+
+
 
 
 // function calcularSalarioBruto(valorHora:number, quantidadeHoras:number): number{
@@ -50,3 +75,6 @@ finally{
 // finally{
 //     console.log("Validação finalizada!")
 // }
+
+
+
